@@ -38,9 +38,30 @@ async function main() {
     //     profilePhoto: "https://programing-hero.com/level2/default-image.png"
     //   }
     // })
-    const users = await prisma.user.findMany({
-        orderBy: { id: "desc" }
+    //   const users = await prisma.user.findMany({
+    //   orderBy: { id: "desc" }
+    // });
+    // const deleteUser = await prisma.user.delete({
+    //   where: {
+    //     email: 'sohel@gmail.com',
+    //   },
+    // })
+    // const deleteUsers = await prisma.user.deleteMany({
+    //   where: {
+    //     email: {
+    //       contains: 'sohel@gmail.com',
+    //     },
+    //   },
+    // })
+    // const deleteUsers = await prisma.user.deleteMany({})//delete all record
+    const usersData = await prisma.user.findMany({
+        where: {
+            name: {
+                contains: "So",
+                mode: "insensitive"
+            }
+        }
     });
-    console.log(users);
+    console.log(usersData);
 }
 main();
